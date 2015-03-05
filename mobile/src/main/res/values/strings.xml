@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Program Reminder test</string>
+
+    <string name="hello_world">Hello dude! Look at this awesome blank screen!</string>
+    <string name="wow">so blank</string>
+    <string name="wow2">much white</string>
+    <string name="wow3">amazing</string>
+    <string name="action_settings">Settings</string>
+</resources>
