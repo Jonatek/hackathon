@@ -5,5 +5,11 @@
     <string name="wow">so blank</string>
     <string name="wow2">much white</string>
     <string name="wow3">amazing</string>
+    <string name="button1">Add channel</string>
+    <string name="button2">Watch this program</string>
     <string name="action_settings">Settings</string>
+
+    <string name="appId">110-114</string>
+    <string name="appSecret">96383642D5024C008F2DC4952B22596E</string>
+
 </resources>
