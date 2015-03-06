@@ -8,6 +8,8 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.provider.SyncStateContract;
 import android.util.Log;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 
 import com.google.android.gms.common.api.PendingResult;
 import com.google.android.gms.common.api.ResultCallback;
@@ -47,6 +49,7 @@ import java.net.InterfaceAddress;
 import java.net.NetworkInterface;
 import java.net.SocketException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.Enumeration;
 import java.util.List;
@@ -59,11 +62,39 @@ public class MainActivity extends Activity {
 
     private static String mIP;
     public String ip;
+eva    private ListView listView;
+    private ArrayAdapter<String> listAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        // Find the ListView resource.
+        listView = (ListView) findViewById(R.id.listView);
+
+        // Create and populate a List of planet names.
+        String[] planets = new String[] { "TF1", "France 2", "France 3", "Canal +",
+                "France 5", "M6", "Arte", "D8", "W9", "TMC", "NT1", "NRJ12"};
+
+        ArrayList<String> planetList = new ArrayList<String>();
+        planetList.addAll(Arrays.asList(planets));
+
+        // Create ArrayAdapter using the planet list.
+        listAdapter = new ArrayAdapter<String>(this, R.layout.row_item, planetList);
+
+        // Add more planets. If you passed a String[] instead of a List<String>
+        // into the ArrayAdapter constructor, you must not add more items.
+        // Otherwise an exception will occur.
+
+        /*listAdapter.add("Ceres");
+        listAdapter.add("Pluto");
+        listAdapter.add("Haumea");
+        listAdapter.add("Makemake");
+        listAdapter.add("Eris");*/
+
+        // Set the ArrayAdapter as the ListView's adapter.
+        listView.setAdapter(listAdapter);
 
         new GetSecurityTokenAsyncTask().execute();
     }
@@ -150,10 +181,10 @@ public class MainActivity extends Activity {
                                     } catch (IOException e) {
                                         e.printStackTrace();
                                     }
-                                    try {
+                                    /*try {
                                         final JSONArray channelsJSONArray = new JSONArray(builder.toString());
-                                        
-                                        /*DataMap dataMap;
+
+                                        DataMap dataMap;
                                         PutDataMapRequest putDataMapRequest = PutDataMapRequest.create(Constants.EPG_DATA);
                                         for (int i = 0; i < channelsJSONArray.length(); i++) {
                                             Log.d(TAG, "i=" + i);
